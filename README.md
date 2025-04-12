@@ -1,4 +1,3 @@
-Claro! Abaixo segue a **versão equivalente dos comandos e scripts do Windows (BAT)** adaptados para **Linux Debian**, utilizando **bash scripts** (arquivos `.sh`):
 
 ---
 
