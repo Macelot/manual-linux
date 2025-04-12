@@ -2,16 +2,42 @@
 ---
 
 ### 🔧 **Equivalentes de comandos no Linux Debian:**
+Com certeza! Abaixo está a **tabela ampliada** com os comandos do Windows e seus **equivalentes no Linux (Debian)**, incluindo os comandos `echo`, `mkdir`, `color` e mais alguns comandos úteis que podem enriquecer seus roteiros de shell:
 
-| Windows         | Linux (Debian)                    | Descrição |
-|----------------|------------------------------------|----------|
-| `tracert`       | `traceroute`                      | Mostra o caminho até um site. |
-| `ping`          | `ping`                            | Mostra a conexão com outro host. |
-| `dir`           | `ls -l`                           | Lista arquivos e diretórios. |
-| `systeminfo`    | `neofetch` ou `inxi -F` ou `uname -a` + `lsb_release -a` + `free -h` | Informações do sistema. |
-| `driverquery`   | `lshw` ou `lspci`                  | Lista de hardware e drivers. |
-| `date`          | `date`                            | Mostra e define a data. |
-| `time`          | `date`                            | Também exibe a hora. Use `date +%T` para hora. |
+---
+
+### 📋 **Tabela de Comandos: Windows vs Linux (Debian)**
+
+| **Windows (CMD / BAT)** | **Linux (Debian / Bash)**     | **Descrição**                                                                 |
+|--------------------------|-------------------------------|--------------------------------------------------------------------------------|
+| `tracert`                | `traceroute`                  | Mostra o caminho até um site ou IP.                                           |
+| `ping`                   | `ping`                        | Testa conectividade entre computadores.                                       |
+| `dir`                    | `ls -l`                       | Lista arquivos e diretórios.                                                  |
+| `systeminfo`             | `uname -a` + `lsb_release -a` | Mostra informações sobre sistema e kernel.                                    |
+| `driverquery`            | `lshw`, `lspci`, `lsusb`      | Lista os drivers, hardware e periféricos.                                     |
+| `date`                   | `date`                        | Mostra e permite alterar a data e hora.                                       |
+| `time`                   | `date +"%T"`                  | Mostra a hora atual.                                                          |
+| `echo`                   | `echo`                        | Exibe texto ou variável na tela.                                              |
+| `mkdir`                  | `mkdir` ou `mkdir -p`         | Cria diretórios.                                                              |
+| `color`                  | `tput setaf` + `tput setab`   | Altera cor do texto/fundo no terminal. (Ex: `tput setaf 1` para vermelho)     |
+| `cls`                    | `clear`                       | Limpa a tela do terminal.                                                     |
+| `pause`                  | `read -p "Pressione Enter..."`| Pausa a execução aguardando entrada do usuário.                               |
+| `%username%`             | `$USER`                       | Nome do usuário logado.                                                       |
+| `%date%`                 | `date +"%d/%m/%Y"`            | Data formatada.                                                               |
+| `%time%`                 | `date +"%H:%M:%S"`            | Hora formatada.                                                               |
+| `%systemroot%` ou `%windir%` | `/etc` ou `/usr`            | Diretórios de sistema no Linux.                                               |
+| `%homepath%`             | `$HOME`                       | Diretório home do usuário.                                                    |
+| `%systemDrive%`          | `/`                           | Unidade principal (raiz) no Linux.                                            |
+
+---
+
+### 💡 **Exemplo de uso do `tput` (equivalente ao `color`)**:
+```bash
+# Texto em vermelho
+tput setaf 1
+echo "Este texto está em vermelho"
+tput sgr0  # Resetar para cor padrão
+```
 
 ---
 
@@ -127,4 +153,59 @@ E executar:
 
 ---
 
-Se quiser, posso empacotar todos esses scripts prontos em um `.zip` ou `.tar.gz`. Deseja isso?
+## Atividade.
+
+Teste este aquivo:
+Crie ele no nano depois definia a permissão de execução:
+```
+chmod +x exemplo.sh
+```bash
+por fim execute ele:
+```bash
+./exemplo.sh
+```
+
+```
+#!/bin/bash
+
+# Ativar suporte a UTF-8 para acentos
+export LANG=pt_BR.UTF-8
+
+# Definir cores (usando tput)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+BLUE=$(tput setaf 4)
+RESET=$(tput sgr0)
+
+# Limpar tela
+clear
+
+# Exibir mensagem inicial
+echo "${BLUE}Bem-vindo ao script de criação de diretórios e arquivos!${RESET}"
+
+# Solicitar nome do usuário
+read -p "Digite seu nome: " NOME
+
+# Diretório de destino (Desktop)
+PASTA="$HOME/Desktop/$NOME"
+
+# Verificar se diretório já existe
+if [ -d "$PASTA" ]; then
+    echo "${RED}Atenção: o diretório '$PASTA' já existe.${RESET}"
+else
+    mkdir -p "$PASTA"
+    echo "${GREEN}Diretório '$PASTA' criado com sucesso.${RESET}"
+fi
+
+# Criar arquivo com data e hora
+ARQUIVO="$PASTA/info.txt"
+echo "Usuário: $NOME" > "$ARQUIVO"
+echo "Data: $(date +"%d/%m/%Y")" >> "$ARQUIVO"
+echo "Hora: $(date +"%H:%M:%S")" >> "$ARQUIVO"
+
+echo "${GREEN}Arquivo criado em: $ARQUIVO${RESET}"
+
+# Pausa
+read -p "${BLUE}Pressione ENTER para encerrar...${RESET}"
+```
+
