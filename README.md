@@ -157,55 +157,69 @@ E executar:
 
 Teste este aquivo:
 Crie ele no nano depois definia a permissão de execução:
-```
-chmod +x exemplo.sh
 ```bash
+chmod +x exemplo.sh
+```
+
 por fim execute ele:
 ```bash
 ./exemplo.sh
 ```
 
-```
-#!/bin/bash
-
 # Ativar suporte a UTF-8 para acentos
+```bash
 export LANG=pt_BR.UTF-8
+```
 
 # Definir cores (usando tput)
+```bash
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 BLUE=$(tput setaf 4)
 RESET=$(tput sgr0)
+```
 
 # Limpar tela
+```bash
 clear
+```
 
 # Exibir mensagem inicial
+```bash
 echo "${BLUE}Bem-vindo ao script de criação de diretórios e arquivos!${RESET}"
+```
 
 # Solicitar nome do usuário
+```bash
 read -p "Digite seu nome: " NOME
+```
 
 # Diretório de destino (Desktop)
+```bash
 PASTA="$HOME/Desktop/$NOME"
+```
 
 # Verificar se diretório já existe
+```bash
 if [ -d "$PASTA" ]; then
     echo "${RED}Atenção: o diretório '$PASTA' já existe.${RESET}"
 else
     mkdir -p "$PASTA"
     echo "${GREEN}Diretório '$PASTA' criado com sucesso.${RESET}"
 fi
+```
 
 # Criar arquivo com data e hora
+```bash
 ARQUIVO="$PASTA/info.txt"
 echo "Usuário: $NOME" > "$ARQUIVO"
 echo "Data: $(date +"%d/%m/%Y")" >> "$ARQUIVO"
 echo "Hora: $(date +"%H:%M:%S")" >> "$ARQUIVO"
-
 echo "${GREEN}Arquivo criado em: $ARQUIVO${RESET}"
+```
 
 # Pausa
+```bash
 read -p "${BLUE}Pressione ENTER para encerrar...${RESET}"
 ```
 
